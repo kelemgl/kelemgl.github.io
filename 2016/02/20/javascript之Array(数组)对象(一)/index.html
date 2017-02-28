@@ -1,0 +1,769 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon-20170227111739322.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="请不要忽视基础哦，往往你在项目当中进坑的地方，都是源于你对某些基础知识掌握的不牢靠。
+一.创建数组
+1.var empty = [];//没有元素的数组
+2.var primes = [1,2,3,4,5];//有五个数值的数组
+3.var misc = [1.1,true,&amp;quot;a&amp;quot;, ];//3个不同类型的元素和结尾的逗号
+数组直接量中的值不一定要是常量，他们可以是任意表达式；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript之Array（数组）对象（一）">
+<meta property="og:url" content="https://kelemgl.github.io/blog/2016/02/20/javascript之Array(数组)对象(一)/index.html">
+<meta property="og:site_name" content="可乐的前端分享">
+<meta property="og:description" content="请不要忽视基础哦，往往你在项目当中进坑的地方，都是源于你对某些基础知识掌握的不牢靠。
+一.创建数组
+1.var empty = [];//没有元素的数组
+2.var primes = [1,2,3,4,5];//有五个数值的数组
+3.var misc = [1.1,true,&amp;quot;a&amp;quot;, ];//3个不同类型的元素和结尾的逗号
+数组直接量中的值不一定要是常量，他们可以是任意表达式；">
+<meta property="og:updated_time" content="2017-02-27T06:46:27.674Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript之Array（数组）对象（一）">
+<meta name="twitter:description" content="请不要忽视基础哦，往往你在项目当中进坑的地方，都是源于你对某些基础知识掌握的不牢靠。
+一.创建数组
+1.var empty = [];//没有元素的数组
+2.var primes = [1,2,3,4,5];//有五个数值的数组
+3.var misc = [1.1,true,&amp;quot;a&amp;quot;, ];//3个不同类型的元素和结尾的逗号
+数组直接量中的值不一定要是常量，他们可以是任意表达式；">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'kelemgl'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kelemgl.github.io/blog/2016/02/20/javascript之Array(数组)对象(一)/"/>
+
+
+
+
+
+  <title> JavaScript之Array（数组）对象（一） | 可乐的前端分享 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">可乐的前端分享</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">前端菜鸟成长记</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/blog/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kelemgl.github.io/blog/blog/2016/02/20/javascript之Array(数组)对象(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kelemgl">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="可乐的前端分享">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript之Array（数组）对象（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-20T00:00:00+08:00">
+                2016-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>请不要忽视基础哦，往往你在项目当中进坑的地方，都是源于你对某些基础知识掌握的不牢靠。</p>
+<p><strong>一.创建数组</strong></p>
+<pre><code>1.var empty = [];//没有元素的数组
+2.var primes = [1,2,3,4,5];//有五个数值的数组
+3.var misc = [1.1,true,&quot;a&quot;, ];//3个不同类型的元素和结尾的逗号
+</code></pre><p>数组直接量中的值不一定要是常量，他们可以是任意表达式；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var base = 1024;</div><div class="line">var table = [base,base+1,base+2,base+3];</div></pre></td></tr></table></figure></p>
+<p>它可以包含对象直接量或其他数组直接量；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var b = [[1,&#123;x:1,y:2&#125;],[2,&#123;x:3,y:4&#125;]];</div></pre></td></tr></table></figure></p>
+<p>如果省略数组直接量中的某个值，省略的元素将被赋予undefined值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var count = [1,,2];//数组有3个元素，中间的那个元素为undefined</div><div class="line">var undefs = [,,];//数组有2个元素，都是undefined</div></pre></td></tr></table></figure></p>
+<p>数组直接量的语法是允许有可选的结尾的逗号，所以<code>[,,]</code>只有两个元素而非三个。</p>
+<p>创建数组的另一种方法，调用构造函数。可以有三种方式调用构造函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//该方法创建一个没有任何元素的空数组，等于[]</div><div class="line">1.var a = new Array();//调用时没有参数；</div><div class="line">//下面的方法创建指定长度的数组，当预先知道元素个数时，这种形式的Array()构造函数可以用来预分配一个数组空间。</div><div class="line">//注意,数组中没有存储值。数组的索引属性还未定义；</div><div class="line">2.var a = new Array(10);</div><div class="line">//显示指定两个或多个数组元素或者数组的一个非数值元素</div><div class="line">var a = new Array(5,4,2,3,&quot;testing,test&quot;);</div></pre></td></tr></table></figure></p>
+<p><strong>二.数组元素的读和写</strong></p>
+<p>数组是通过[]操作符来访问数组中的一个元素，也可以创建一个元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = [1,2,3];</div><div class="line">var a1 = a[0];//是获取数组arr中的第一个元素1</div><div class="line">a[3] = 4;//数组arr变成了[1,2,3,4]</div></pre></td></tr></table></figure></p>
+<p>数组是对象的特殊形式。使用方括号访问数组元素就像用方括号访问对象的属性一样。</p>
+<p><strong>三.数组长度</strong></p>
+<p>每个数组有一个<code>length</code>属性，代表数组的个数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[].length // length为0 数组没有元素</div><div class="line">[1,2,3].length //3  最大的索引为2</div></pre></td></tr></table></figure>
+<p><strong>有一个特殊的行为是设置<code>length</code>属性为一个小于当前长度的非负整数<code>n</code>时,当前数组中那些大于索引值将被删除。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a1 = [1,2,3];</div><div class="line">a1.length = 2;</div><div class="line">console.log(a1);//数组变成了[1,2]</div></pre></td></tr></table></figure>
+<p>也可以将数组的<code>length</code>属性值设置为大于当前的长度。实际上这不会向数组中添加新的元素，它只是在数组尾部创建一个空的区域。</p>
+<p><strong>四.数组元素的添加和删除</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">1.数组元素添加方法一</div><div class="line">a = [];</div><div class="line">a[0]= &quot;zerro&quot;;</div><div class="line">a[1] = &quot;one&quot;</div><div class="line">console.log(a);//[&quot;zerro&quot;,&quot;one&quot;]</div><div class="line"></div><div class="line">2.数组元素添加方法二</div><div class="line">a = [];</div><div class="line">a.push(&quot;zero&quot;);</div><div class="line">a.push(&quot;one&quot;,&quot;two&quot;);</div><div class="line">console.log(a);//[&quot;zero&quot;,&quot;one&quot;,&quot;two&quot;]</div><div class="line"></div><div class="line">3.数组元素的删除方法一</div><div class="line">var arr1 = [1,2,3];</div><div class="line">delete arr1[0];</div><div class="line">console.log(arr1);//[2,3]</div><div class="line"></div><div class="line">4.数组元素的删除方法二</div><div class="line">var arr1 = [1,2,3];</div><div class="line">arr1.length = 2;</div><div class="line">console.log(arr1);//[1,2]</div></pre></td></tr></table></figure>
+<p>还有其他的添加和删除方法，这些方法我们后面会记录的。</p>
+<p><strong>五.数组遍历</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">1.for方法循环</div><div class="line"></div><div class="line">var arr = [1,2,3,4];</div><div class="line">for(var i = 0;i&lt;arr.length;i++)&#123;</div><div class="line">    console.log(arr[i]);//[1,2,3,4]</div><div class="line">&#125;</div><div class="line"></div><div class="line">排除null undefined和不存在的元素。</div><div class="line">for(var i = 0;i&lt;arr.length;i++)&#123;</div><div class="line">    if(!a[i]) continue;//跳过null、undefined和不存在的元素</div><div class="line">&#125;</div><div class="line"></div><div class="line">如果只想挑错undefined和不存在的元素：</div><div class="line">for(var i = 0;i &lt; arr.length;i++)&#123;</div><div class="line">    if(a[i]===undefined) continue;</div><div class="line">    //循环体</div><div class="line">&#125;</div><div class="line"></div><div class="line">2.使用for/in 循环</div><div class="line"></div><div class="line">for(var i in arr)&#123;</div><div class="line">  console.log(arr[i]);//[1,2,3,4]</div><div class="line">&#125;</div><div class="line"></div><div class="line">注意：for/in循环一般用在遍历object上，不建议循环数组。</div></pre></td></tr></table></figure></p>
+<p>如果读者又发现错处，请记得留言评论哦，下一篇我将记录数组方法。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="kelemgl wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2016/02/21/超详细的数组方法介绍/" rel="prev" title="超详细的数组方法介绍">
+                超详细的数组方法介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/uploads/avatar.png"
+               alt="kelemgl" />
+          <p class="site-author-name" itemprop="name">kelemgl</p>
+           
+              <p class="site-description motion-element" itemprop="description">积土而为山，积水而为海。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="Link" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kelemgl" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5057150953/home?wvr=5" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kelemgl</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

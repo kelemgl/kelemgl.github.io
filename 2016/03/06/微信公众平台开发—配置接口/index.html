@@ -1,0 +1,815 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="微信开发," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon-20170227111739322.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在阅读这篇文章之前你要做以下的准备:
+1.注册一个订阅号(通过微信公众平台https://mp.weixin.qq.com/);
+2.注册新浪云并实名认证http://sae.sina.com.cn/
+3.实名认证新浪云之后,创建一个云应用.
+4.你需要知道php基础知识.
+###一:验证接口
+1.登录我们的公众号.然后点击进入开发者工具,在登录之后页面的左下角.2.点击进入开发者文档.之后点击开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信公众平台开发—配置接口">
+<meta property="og:url" content="https://kelemgl.github.io/blog/2016/03/06/微信公众平台开发—配置接口/index.html">
+<meta property="og:site_name" content="可乐的前端分享">
+<meta property="og:description" content="在阅读这篇文章之前你要做以下的准备:
+1.注册一个订阅号(通过微信公众平台https://mp.weixin.qq.com/);
+2.注册新浪云并实名认证http://sae.sina.com.cn/
+3.实名认证新浪云之后,创建一个云应用.
+4.你需要知道php基础知识.
+###一:验证接口
+1.登录我们的公众号.然后点击进入开发者工具,在登录之后页面的左下角.2.点击进入开发者文档.之后点击开">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2360985-e814aa0608687c44.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2360985-689b26171276a7a3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2360985-097a777f7baf5f2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2360985-69707a216fc80250.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2360985-a077c54bdc16f889.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2360985-8a578d412a50e489.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2360985-8ca79e586467b8ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-02-27T06:59:46.091Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信公众平台开发—配置接口">
+<meta name="twitter:description" content="在阅读这篇文章之前你要做以下的准备:
+1.注册一个订阅号(通过微信公众平台https://mp.weixin.qq.com/);
+2.注册新浪云并实名认证http://sae.sina.com.cn/
+3.实名认证新浪云之后,创建一个云应用.
+4.你需要知道php基础知识.
+###一:验证接口
+1.登录我们的公众号.然后点击进入开发者工具,在登录之后页面的左下角.2.点击进入开发者文档.之后点击开">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2360985-e814aa0608687c44.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'kelemgl'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kelemgl.github.io/blog/2016/03/06/微信公众平台开发—配置接口/"/>
+
+
+
+
+
+  <title> 微信公众平台开发—配置接口 | 可乐的前端分享 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">可乐的前端分享</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">前端菜鸟成长记</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/blog/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kelemgl.github.io/blog/blog/2016/03/06/微信公众平台开发—配置接口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kelemgl">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="可乐的前端分享">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                微信公众平台开发—配置接口
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-06T00:00:00+08:00">
+                2016-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/微信开发笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">微信开发笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在阅读这篇文章之前你要做以下的准备:</p>
+<pre><code>1.注册一个订阅号(通过微信公众平台https://mp.weixin.qq.com/);
+2.注册新浪云并实名认证http://sae.sina.com.cn/
+3.实名认证新浪云之后,创建一个云应用.
+4.你需要知道php基础知识.
+</code></pre><p>###一:验证接口</p>
+<p>1.登录我们的公众号.然后点击进入开发者工具,在登录之后页面的左下角.<br>2.点击进入开发者文档.之后点击开始开发,点击接入指南,我们会看到如下图.</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2360985-e814aa0608687c44.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="D5D1E784-2064-4ABD-8B80-3ABD137F66A8.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">图片上有说,接入微信公众平台开发,开发者需要按照如下步骤完成:</div><div class="line">1.填写服务器配置</div><div class="line">2.验证服务器地址的有效性</div><div class="line">3.依据接口文档实现业务逻辑.</div></pre></td></tr></table></figure>
+<p>#####第一步:填写服务器配置<br>我们登录微信公众号之后,右下角基本开发配置点进去,</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2360985-689b26171276a7a3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="0.jpg"></p>
+<p>URL是开发者用来接收微信消息和事件的接口URL.具体怎么填我们等下详细说.</p>
+<p>Token可以随意填写(但是每个人都不一样的,如果后面提交失败可以试着修改Token),这个Token会和接口中包含的Token进行比对,从而验证安全性,EncodingAESKey由开发者手动填写或随机生成，将用作消息体加解密密钥。</p>
+<p>填写的URL,需要我们有自己的服务器的地址,现在我们就要到我们之前注册的新浪云云应用了.</p>
+<p>######一.登录新浪云,点击云应用,点击进入控制台.如下图创建</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2360985-097a777f7baf5f2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="E150DD45-C65E-42F6-87D9-10BB9AC0E588.png"></p>
+<p>######二.级域名和应用名称,自己起个名字就好.然后点击进入下图红色标记的地方.</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2360985-69707a216fc80250.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2BD15953-4430-44BD-8208-DF5953CA334B.png"></p>
+<p>######三.如下图箭头指示点击进入编辑代码</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2360985-a077c54bdc16f889.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2568CDA5-911B-4A7A-A74D-44E6E9C86294.png"></p>
+<p>######四.之后会弹出SAE的界面,我们需要在里面建立一个php文件,然后点击通过URL访问,之后我们把这个网址拷贝下来,放到我们之前基本配置的URL上.</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2360985-8a578d412a50e489.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2016-09-20 下午7.43.54.png"></p>
+<p>#####第二步:验证消息的确来自微信服务器<br>具体的php代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">	// //最简单的验证方式</div><div class="line">	// echo $_GET[&quot;echostr&quot;];</div><div class="line"></div><div class="line">	//验证是否来自于微信</div><div class="line">	function checkWeixin()&#123;</div><div class="line">		//微信会发送4个参数到我们的服务器后台 签名 时间戳 随机字符串 随机数</div><div class="line"></div><div class="line">		$signature = $_GET[&quot;signature&quot;];</div><div class="line">		$timestamp = $_GET[&quot;timestamp&quot;];</div><div class="line">		$nonce = $_GET[&quot;nonce&quot;];</div><div class="line">		$echostr = $_GET[&quot;echostr&quot;];</div><div class="line">		$token = &quot;qilipingmgl&quot;;</div><div class="line"></div><div class="line">		// 1）将token、timestamp、nonce三个参数进行字典序排序</div><div class="line">		$tmpArr = array($nonce,$token,$timestamp);</div><div class="line">		sort($tmpArr,SORT_STRING);</div><div class="line"></div><div class="line">		// 2）将三个参数字符串拼接成一个字符串进行sha1加密</div><div class="line">		$str = implode($tmpArr);</div><div class="line">		$sign = sha1($str);</div><div class="line"></div><div class="line">		// 3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信</div><div class="line">		if ($sign == $signature) &#123;</div><div class="line">			echo $echostr;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	checkWeixin();</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="注意-代码中-token是每个人不同的-我们需要填写自己的-点击开发者工具-之后右边有公众平台测试账号-点击进入-之后我们会看到接口配置-把Token复制过来放到代码中"><a href="#注意-代码中-token是每个人不同的-我们需要填写自己的-点击开发者工具-之后右边有公众平台测试账号-点击进入-之后我们会看到接口配置-把Token复制过来放到代码中" class="headerlink" title="####注意:代码中$token是每个人不同的,我们需要填写自己的,点击开发者工具,之后右边有公众平台测试账号,点击进入,之后我们会看到接口配置,把Token复制过来放到代码中."></a>####注意:代码中<code>$token</code>是每个人不同的,我们需要填写自己的,点击开发者工具,之后右边有公众平台测试账号,点击进入,之后我们会看到接口配置,把Token复制过来放到代码中.</h2><p>我们把这个代码复制到我们刚创建的SAE的php文件里,再保存(记得要保存哦),然后点击通过URL访问,</p>
+<p>如果报错了(报错的信息是数字的话),请点击开发者文档中,点击开始前必读,有个接口返回码说明,我们可以对照一下,错误在哪里,<strong>注意:0的时候表示请求成功.</strong></p>
+<p>###二.获取access_token<br><strong>提示:access_token是公众号的全局唯一接口调用凭据，公众号调用各接口时都需使用access_token.我们作为开发者要妥善保存,access_token的有效期目前为2个小时，需定时刷新，重复获取将导致上次获取的access_token失效。</strong></p>
+<p>######第一步,我们点击开发者文档,点击开始开发,点击获取access_token之后会看到,http请求方式:GET,然后一个网址,我们需要用到这个网址,如下图,</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2360985-8ca79e586467b8ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="E0204D74-2EA6-4943-B93F-7E7C1E2FA88A.png"></p>
+<p>######第二步:我们写GET请求的函数,获取access_token<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">	class Weixin&#123;</div><div class="line">		private $appID = &quot;wxe62f370c4e2cade2&quot;;</div><div class="line">		private $appsecret  = &quot;58807091ae5a4c59ee3e47108184bdb7&quot;;</div><div class="line"></div><div class="line">		function getAccessToken()&#123;</div><div class="line">			$url = &quot;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=&#123;$this-&gt;appID&#125;&amp;secret=&#123;$this-&gt;appsecret&#125;&quot;;</div><div class="line"></div><div class="line">			// return $this-&gt;httpGet($url);</div><div class="line">			//json字符串</div><div class="line">			$json = $this-&gt;httpGet($url);</div><div class="line">			//解析json</div><div class="line">			$obj = json_decode($json);</div><div class="line">			return $obj-&gt;access_token;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		function httpGet($url)&#123;</div><div class="line">			//1.初始化</div><div class="line">			$curl = curl_init();</div><div class="line">			//配置curl</div><div class="line">			curl_setopt($curl, CURLOPT_URL, $url);</div><div class="line">			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);</div><div class="line">			//执行curl</div><div class="line">			$res = curl_exec($curl);</div><div class="line">			//关闭curl</div><div class="line">			curl_close($curl);</div><div class="line">			return $res;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	$wx = new Weixin();</div><div class="line">	echo $wx-&gt;getAccessToken();</div><div class="line"></div><div class="line">	/*</div><div class="line">		获取access_token方法 get方法</div><div class="line">	*/</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="注意-代码中-appID和-appsecret是每个人不同的-我们需要填写自己的-点击开发者工具-之后右边有公众平台测试账号-点击进入-之后我们会看到测试号信息-然后复制过来放到代码中"><a href="#注意-代码中-appID和-appsecret是每个人不同的-我们需要填写自己的-点击开发者工具-之后右边有公众平台测试账号-点击进入-之后我们会看到测试号信息-然后复制过来放到代码中" class="headerlink" title="####注意:代码中$appID和$appsecret是每个人不同的,我们需要填写自己的,点击开发者工具,之后右边有公众平台测试账号,点击进入,之后我们会看到测试号信息.然后复制过来放到代码中."></a>####注意:代码中<code>$appID</code>和<code>$appsecret</code>是每个人不同的,我们需要填写自己的,点击开发者工具,之后右边有公众平台测试账号,点击进入,之后我们会看到测试号信息.然后复制过来放到代码中.</h2><h2 id="第三步-我们代码复制到SAEphp文件中-点击右键通过URL访问-如果返回-quot-access-token-quot-quot-ACCESS-TOKEN-quot-quot-expires-in-quot-7200-表示我们获取token成功-如果不幸报错了-没关系我们找错误-点击开发文档-点击开始前必读-点击接口返回码说明-我们对照一下-根据提示找错误就好了"><a href="#第三步-我们代码复制到SAEphp文件中-点击右键通过URL访问-如果返回-quot-access-token-quot-quot-ACCESS-TOKEN-quot-quot-expires-in-quot-7200-表示我们获取token成功-如果不幸报错了-没关系我们找错误-点击开发文档-点击开始前必读-点击接口返回码说明-我们对照一下-根据提示找错误就好了" class="headerlink" title="######第三步:我们代码复制到SAEphp文件中,点击右键通过URL访问,如果返回{&quot;access_token&quot;:&quot;ACCESS_TOKEN&quot;,&quot;expires_in&quot;:7200}表示我们获取token成功.如果不幸报错了,没关系我们找错误,点击开发文档,点击开始前必读,点击接口返回码说明,我们对照一下,根据提示找错误就好了."></a>######第三步:我们代码复制到SAEphp文件中,点击右键通过URL访问,如果返回<code>{&quot;access_token&quot;:&quot;ACCESS_TOKEN&quot;,&quot;expires_in&quot;:7200}</code>表示我们获取token成功.如果不幸报错了,没关系我们找错误,点击开发文档,点击开始前必读,点击接口返回码说明,我们对照一下,根据提示找错误就好了.</h2><p>说道这里我们的配置接口就完成了,下一节我们继续微信开发-&gt;自定菜单创建接口.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="kelemgl wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/微信开发/" rel="tag"># 微信开发</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/03/05/JavaScript实现斐波那契数列/" rel="next" title="JavaScript实现斐波那契数列">
+                <i class="fa fa-chevron-left"></i> JavaScript实现斐波那契数列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2016/03/12/页面布局之两列定宽中间自适应布局/" rel="prev" title="页面布局之两列定宽中间自适应布局">
+                页面布局之两列定宽中间自适应布局 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/uploads/avatar.png"
+               alt="kelemgl" />
+          <p class="site-author-name" itemprop="name">kelemgl</p>
+           
+              <p class="site-description motion-element" itemprop="description">积土而为山，积水而为海。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="Link" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kelemgl" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5057150953/home?wvr=5" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#注意-代码中-token是每个人不同的-我们需要填写自己的-点击开发者工具-之后右边有公众平台测试账号-点击进入-之后我们会看到接口配置-把Token复制过来放到代码中"><span class="nav-number">1.</span> <span class="nav-text">####注意:代码中$token是每个人不同的,我们需要填写自己的,点击开发者工具,之后右边有公众平台测试账号,点击进入,之后我们会看到接口配置,把Token复制过来放到代码中.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意-代码中-appID和-appsecret是每个人不同的-我们需要填写自己的-点击开发者工具-之后右边有公众平台测试账号-点击进入-之后我们会看到测试号信息-然后复制过来放到代码中"><span class="nav-number">2.</span> <span class="nav-text">####注意:代码中$appID和$appsecret是每个人不同的,我们需要填写自己的,点击开发者工具,之后右边有公众平台测试账号,点击进入,之后我们会看到测试号信息.然后复制过来放到代码中.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步-我们代码复制到SAEphp文件中-点击右键通过URL访问-如果返回-quot-access-token-quot-quot-ACCESS-TOKEN-quot-quot-expires-in-quot-7200-表示我们获取token成功-如果不幸报错了-没关系我们找错误-点击开发文档-点击开始前必读-点击接口返回码说明-我们对照一下-根据提示找错误就好了"><span class="nav-number">3.</span> <span class="nav-text">######第三步:我们代码复制到SAEphp文件中,点击右键通过URL访问,如果返回{"access_token":"ACCESS_TOKEN","expires_in":7200}表示我们获取token成功.如果不幸报错了,没关系我们找错误,点击开发文档,点击开始前必读,点击接口返回码说明,我们对照一下,根据提示找错误就好了.</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kelemgl</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
